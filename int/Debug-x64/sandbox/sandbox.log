@@ -1,0 +1,3 @@
+﻿  Application.cpp
+D:\Santiago\C\Projects\treel-engine\sandbox\src\Application.cpp(5,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  sandbox.vcxproj -> D:\Santiago\C\Projects\treel-engine\bin\Debug-x64\sandbox\sandbox.exe

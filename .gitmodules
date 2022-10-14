@@ -1,0 +1,3 @@
+[submodule "treel-engine/vendor/spdlog"]
+	path = treel-engine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

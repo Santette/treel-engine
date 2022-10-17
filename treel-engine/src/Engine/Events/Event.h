@@ -1,5 +1,6 @@
 #pragma once
 
+#include "tepch.h"
 #include "Engine/Core.h"
 
 namespace TreelEngine {
@@ -9,7 +10,7 @@ namespace TreelEngine {
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased,
-		MouseButtonPressed, MouseButtonReleased, MouseMouved, MouseScrolled
+		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
 	enum EventCategory {
@@ -56,7 +57,7 @@ namespace TreelEngine {
 
 		template<typename T>
 		bool Dispatch(EventFn<T> func) {
-			if (m_Event.getEventType() == T::GetStaticType()) {
+			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}

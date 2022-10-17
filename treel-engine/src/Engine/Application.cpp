@@ -5,19 +5,15 @@
 #include "Engine/Log.h"
 
 namespace TreelEngine {
-	Application::Application() {}
+	Application::Application() {
+		m_Window = std::unique_ptr<Window>(Window::Create());
+	}
+
 	Application::~Application() {}
 
 	void Application::Run() {
-		WindowResizeEvent e(1280, 720);
-
-		if (e.IsInCategory(EventCategoryApplication)) {
-			TE_TRACE(e);
+		while (m_Running) {
+			m_Window->OnUpdate();
 		}
-		if (e.IsInCategory(EventCategoryKeyboard)) {
-			TE_ERROR("Window Resize is in \"Keyboard\" category, this shouldn't happen. {0}", e);
-		}
-
-		while (true);
 	}
 }

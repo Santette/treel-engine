@@ -9,6 +9,12 @@ workspace "treel-engine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "treel-engine/vendor/GLFW/include"
+
+include "treel-engine/vendor/GLFW"
+
 project "treel-engine"
 	location "treel-engine"
 	kind "SharedLib"
@@ -27,7 +33,13 @@ project "treel-engine"
 
 	includedirs {
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

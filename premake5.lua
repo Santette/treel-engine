@@ -17,6 +17,9 @@ project "treel-engine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "tepch.h"
+	pchsource "treel-engine/src/tepch.cpp"
+
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"

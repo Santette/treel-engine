@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace TreelEngine {
 	class TREELENGINE_API MouseMovedEvent : public Event {
 	public:

@@ -2,9 +2,6 @@
 
 #include "Engine/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace TreelEngine {
 	enum class EventType
 	{

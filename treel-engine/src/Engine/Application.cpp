@@ -1,3 +1,4 @@
+#include "tepch.h"
 #include "Application.h"
 
 #include "Engine/Events/ApplicationEvent.h"

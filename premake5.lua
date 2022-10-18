@@ -13,9 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "treel-engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "treel-engine/vendor/Glad/include"
+IncludeDir["ImGui"] = "treel-engine/vendor/imgui"
 
 include "treel-engine/vendor/GLFW"
 include "treel-engine/vendor/Glad"
+include "treel-engine/vendor/imgui"
 
 project "treel-engine"
 	location "treel-engine"
@@ -37,12 +39,14 @@ project "treel-engine"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links {
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

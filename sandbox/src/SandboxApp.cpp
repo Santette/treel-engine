@@ -18,6 +18,7 @@ class Sandbox : public TreelEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new TreelEngine::ImGuiLayer());
 	}
 	~Sandbox() {
 

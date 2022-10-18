@@ -29,6 +29,9 @@ namespace TreelEngine {
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_XOffset(xOffset), m_YOffset(yOffset) {}
 
+		inline float GetXOffset() const { return m_XOffset; }
+		inline float GetYOffset() const { return m_YOffset; }
+
 		std::string ToString() const override {
 			std::stringstream ss;
 			ss << "MouseMovedEvent: " << m_XOffset << ", " << m_YOffset;

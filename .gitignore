@@ -6,3 +6,4 @@ int/
 **.vcxproj
 **.vcxproj.user
 **.vcxproj.filters
+/sandbox/imgui.ini

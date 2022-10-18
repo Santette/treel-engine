@@ -7,6 +7,8 @@ workspace "treel-engine"
 		"Dist"
 	}
 
+	startproject "sandbox"
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
@@ -15,14 +17,17 @@ IncludeDir["GLFW"] = "treel-engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "treel-engine/vendor/Glad/include"
 IncludeDir["ImGui"] = "treel-engine/vendor/imgui"
 
-include "treel-engine/vendor/GLFW"
-include "treel-engine/vendor/Glad"
-include "treel-engine/vendor/imgui"
+group "Dependencies"
+	include "treel-engine/vendor/GLFW"
+	include "treel-engine/vendor/Glad"
+	include "treel-engine/vendor/imgui"
+group ""
 
 project "treel-engine"
 	location "treel-engine"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -52,7 +57,6 @@ project "treel-engine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -62,28 +66,29 @@ project "treel-engine"
 		}
 
 		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/sandbox/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "TE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "sandbox"
 	location "sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -104,7 +109,6 @@ project "sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -113,15 +117,15 @@ project "sandbox"
 
 	filter "configurations:Debug"
 		defines "TE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

@@ -1,7 +1,8 @@
 #include "tepch.h"
 
 #include "Engine/Application.h"
-#include "Engine/Log.h"
+
+#include <glad/glad.h>
 
 namespace TreelEngine {
 

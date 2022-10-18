@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "treel-engine/vendor/GLFW/include"
+IncludeDir["Glad"] = "treel-engine/vendor/Glad/include"
 
 include "treel-engine/vendor/GLFW"
+include "treel-engine/vendor/Glad"
 
 project "treel-engine"
 	location "treel-engine"
@@ -34,11 +36,13 @@ project "treel-engine"
 	includedirs {
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -49,7 +53,8 @@ project "treel-engine"
 
 		defines {
 			"TE_PLATFORM_WINDOWS",
-			"TE_BUILD_DLL"
+			"TE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {
